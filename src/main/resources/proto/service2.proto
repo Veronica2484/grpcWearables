@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "service2";
+option java_outer_classname = "NoiseMonitorServiceImpl";
+
+package service2;
+
+service NoiseMonitorService { //Name of the service + keyword Service. This service will track all the level of noisy along the night that are sent by the client 
+	//Client Streaming 
+    rpc NoiseMonitor(stream NoiseMonitorRequest) returns (NoiseMonitorResponse){};  //We have rpc, the name of the function NoiseMonitor, input type, returns keyword and output  
+
+}
+
+message NoiseMonitorRequest { 
+	int64 number = 1;
+}
+
+message NoiseMonitorResponse {
+	string noisyValues = 1;
+    double average = 2;
+}

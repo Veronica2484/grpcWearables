@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "service3";
+option java_outer_classname = "SnoreMeterServiceImpl";
+
+package service3;
+
+service SnoreMeterService { //Name of the service + keyword Service. This service will monitor the level of snore from the sleepers and will send an alert when it overtakes a certain level
+	//BiDi Streaming
+    rpc SnoreMeter(stream SnoreMeterRequest) returns (stream SnoreMeterResponse){};  //We have rpc, the name of the function Sleep Pattern, input type, returns keyword and output  
+
+}
+
+message SnoreMeterRequest { 
+	int32 number = 1;
+}
+
+message SnoreMeterResponse {
+	string snoreAlert = 1;
+}

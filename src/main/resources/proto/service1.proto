@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "service1";
+option java_outer_classname = "SleepPatternServiceImpl";
+
+package service1;
+
+service SleepPatternService { //Name of the service + keyword Service. This service will send to the user her/his pattern of sleep during a night or numbers of night
+	//Unary. 
+    rpc SleepPattern(SleepPatternRequest) returns (SleepPatternResponse){};  //We have rpc, the name of the function Sleep Pattern, input type, returns keyword and output  
+  
+    //Server Streaming
+    rpc WeeklySleepPattern(WeeklySleepPatternRequest) returns (stream WeeklySleepPatternResponse){};// rpc, name of the function WeeklySleepPattern, input type, returns keyword and WeeklySleepPatternResponse  
+}
+
+message SleepPatternRequest { 
+  string userName = 1;
+}
+
+message SleepPatternResponse {
+	//fields of the proto. String and enumeration type
+  string userName = 1;
+  
+  enum Pattern{
+
+	UNKNOWN=0;
+  	VERY_WELL=1;
+  	WELL=2;
+  	NOT_WELL=3;
+  	VERY_UNWELL=4;
+  }
+  Pattern pattern = 2;
+}
+
+message WeeklySleepPatternRequest { 
+	  string userName = 1;
+	}
+
+message WeeklySleepPatternResponse {
+	//fields of the proto. String and enumeration type
+  string userName = 1;
+  
+  enum Pattern{
+
+	  UNKNOWN=0;
+	  VERY_WELL=1;
+	  WELL=2;
+	  NOT_WELL=3;
+	  VERY_UNWELL=4;
+  }
+  Pattern pattern = 2;
+}
+
+
+
+
+
